@@ -1,0 +1,25 @@
+{% extends 'reg/base.html' %}
+
+{% block content %}
+
+
+<div class="row " style="padding-left:200px;">
+    <div class="col-sm-8 rounded border ">
+        <h4 class="text-center alert alert-info ">Login Here</h4>
+
+        <form action="" method="post" novalidate>
+            {% csrf_token %}
+            {% for fm in form %}
+            {{ fm.label_tag}} {{fm }}
+            {{ fm.errors | striptags }}
+            <br>
+            {% endfor %}
+            <input type="submit" value="Login" class="btn btn-success">
+        </form>
+        <br>
+        <a href="{% url 'signup' %}">Signup</a>
+
+    </div>
+</div>
+
+{% endblock content %}
