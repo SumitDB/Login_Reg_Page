@@ -27,6 +27,7 @@ def User_login(request):
             user = authenticate(username=uname, password=upass)
             if user is not None:
                 login(request, user)
+                messages.success(request,'Logged in successfully !!')
                 return HttpResponseRedirect('/profile/')
     else:
         fm = AuthenticationForm()
@@ -34,5 +35,5 @@ def User_login(request):
 
 
 
-def user_profile(request):
+def User_profile(request):
     return render(request, 'reg/profile.html')

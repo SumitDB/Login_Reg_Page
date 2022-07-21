@@ -1,8 +1,8 @@
 {% extends 'reg/base.html' %}
 
 {% block content %}
-<div class="row " style="padding-left:12px;">
-    <div class="col-sm-4  rounded border   ">
+<div class=" row " style=" padding-left:12px;">
+    <div class=" col-sm-4  rounded border ">
         <h4 class="text-center alert alert-info ">Sign Up Here</h4>
         <form action="" method="POST" novalidate>
             {% csrf_token %}
@@ -10,11 +10,12 @@
             {{ fm.label_tag }}
             {{ fm }}
             {{ fm.errors | striptags }}<br>
-
             {% endfor %}
+
+            
             <input type="submit" class="btn btn-success" value="Submit">
         </form>
-        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
         {% if messages %}
         {% for messages in messages %}
         <small {% if messages.tags %} class="{{ message.tags}}" {% endif %}> {{messages}}
@@ -26,23 +27,16 @@
             <button type="button" class="btn btn-primary btn-floating mx-1">
                 <i class="fab fa-facebook-f"></i>
             </button>
-
             <button type="button" class="btn btn-primary btn-floating mx-1">
                 <i class="fab fa-google"></i>
             </button>
-
             <button type="button" class="btn btn-primary btn-floating mx-1">
                 <i class="fab fa-twitter"></i>
             </button>
-
             <button type="button" class="btn btn-primary btn-floating mx-1">
                 <i class="fab fa-github"></i>
             </button>
         </div>
-    </div>
-    <div class="col-sm-8 rounded border ">
-        <h4 class="text-center alert alert-info ">Login Here</h4>
-
     </div>
 </div>
 {% endblock content %}
