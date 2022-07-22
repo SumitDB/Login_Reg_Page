@@ -15,6 +15,7 @@
             
             <input type="submit" class="btn btn-success" value="Submit">
         </form>
+        <br>
         <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
         {% if messages %}
         {% for messages in messages %}
@@ -22,21 +23,6 @@
         </small>
         {% endfor %}
         {% endif %}
-        <div class="text-center">
-            <p>or sign up with:</p>
-            <button type="button" class="btn btn-primary btn-floating mx-1">
-                <i class="fab fa-facebook-f"></i>
-            </button>
-            <button type="button" class="btn btn-primary btn-floating mx-1">
-                <i class="fab fa-google"></i>
-            </button>
-            <button type="button" class="btn btn-primary btn-floating mx-1">
-                <i class="fab fa-twitter"></i>
-            </button>
-            <button type="button" class="btn btn-primary btn-floating mx-1">
-                <i class="fab fa-github"></i>
-            </button>
-        </div>
     </div>
 </div>
 {% endblock content %}

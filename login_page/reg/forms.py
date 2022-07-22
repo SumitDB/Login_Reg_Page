@@ -4,17 +4,28 @@ from django import forms
 
 
 class SignUpForm(UserCreationForm):
-    password2= forms.CharField(label='Confirm Password(again)', 
-    widget=forms.PasswordInput(attrs={'class':'form-control'}))
-    password1= forms.CharField(label='Password',widget=forms.PasswordInput(attrs={'class':'form-control'}))
+    password2 = forms.CharField(label='Confirm Password(again)',
+                                widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    password1 = forms.CharField(
+        label='Password', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+
     class Meta:
-        model=User
-        fields = ['first_name','last_name','username', 'email',]
-        labels = {'email':'Email',}
+        model = User
+        fields = ['first_name', 'last_name', 'username', 'email', ]
+        labels = {'email': 'Email'}
         widgets = {
-            'first_name': forms.TextInput(attrs={'class':'form-control'}),
-            'last_name': forms.TextInput(attrs={'class':'form-control'}),
-            'email': forms.EmailInput(attrs={'class':'form-control'}), 
-            'username':forms.TextInput(attrs={'class':'form-control'}),          
+            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'username': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
+
+class LoginForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'password2', ]
+        widgets = {
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'username': forms.TextInput(attrs={'class': 'form-control'}),
+        }

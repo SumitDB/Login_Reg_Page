@@ -19,21 +19,34 @@ def Sign_up(request):
 
 #Login View
 def User_login(request):
-    if request.method == "POST":
-        fm=AuthenticationForm(request=request, data=request.POST)
-        if fm.is_valid():
-            uname = fm.cleaned_data['username']
-            upass = fm.cleaned_data['password']
-            user = authenticate(username=uname, password=upass)
-            if user is not None:
-                login(request, user)
-                messages.success(request,'Logged in successfully !!')
-                return HttpResponseRedirect('/profile/')
+    if  not request.user.is_authenticated:
+        if request.method == "POST":
+            fm=AuthenticationForm(request=request, data=request.POST)
+            if fm.is_valid():
+                uname = fm.cleaned_data['username']
+                upass = fm.cleaned_data['password']
+                user = authenticate(username=uname, password=upass)
+                if user is not None:
+                    login(request, user)
+                    messages.success(request,'Logged in successfully !!')
+                    return HttpResponseRedirect('/profile/')
+        else:
+            fm = AuthenticationForm()
+        return render(request,'reg/login.html',{'form':fm})
     else:
-        fm = AuthenticationForm()
-    return render(request,'reg/login.html',{'form':fm})
+        return HttpResponseRedirect('/prof/')
+
 
 
 
 def User_profile(request):
-    return render(request, 'reg/profile.html')
+    if request.user.is_authenticated:
+        return render(request, 'reg/profile.html',{'name':request.user})
+    else:
+        return HttpResponseRedirect('/login/')
+
+
+def User_logout(request):
+    logout(request)
+    return HttpResponseRedirect('/login/')
+
